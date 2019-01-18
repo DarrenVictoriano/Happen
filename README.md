@@ -1,2 +1,2 @@
 # Project_One
-The ultimate project ONE
+The making of the ultimate Project ONE
