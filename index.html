@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <!-- Modal Structure -->
+
+    <div class="container">
+        <h2 class="green-text text-darken-2">Make it Happen</h2>
+
+
+        <a href="#sample" class="btn lightgreen modal-trigger">Let's Get Started!</a>
+
+        <div class="modal" id="sample">
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <form>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input type="text" id="name-input" class="autocomplete">
+                                <label for="name-input">Name</label>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">cake</i>
+                            <input type="text" id="age-input" class="autocomplete">
+                            <label for="age-input">Age</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">mail</i>
+                            <input type="text" id="email-input" class="autocomplete">
+                            <label for="email-input">Email</label>
+                        </div class="col-md-4 text-center">
+                        <button class="btn btn-primary" id="add-employee-btn" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.modal').modal();
+            });
+        </script>
+
+</body>
+
+
+
+</html>
