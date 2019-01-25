@@ -1,0 +1,47 @@
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: #fafafa;
+}
+#main-container {
+    background-color: #fafafa;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#centering-container {
+    background-color: #fafafa;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+/* opening line */
+.opening-line {
+    font-size: x-large;
+    -webkit-animation-duration: .5s;
+}
+/* image logo */
+#happen-logo {
+    height: 208px;
+    width: 333px;
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-delay: 6s;
+}
+/* start button */
+.btn.waves-effect.waves-light.green.accent-3 {
+    width: 100px;
+    color: #fafafa;
+    -webkit-animation-duration: .5s;
+    -webkit-animation-delay: 7s;
+}
