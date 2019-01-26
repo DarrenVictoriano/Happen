@@ -15,6 +15,7 @@ $(document).ready(function () {
             prev: 'fa-chevron-left',
             next: 'fa-chevron-right'
         },
+        nowIndicator: true,
         weekNumbers: true,
         eventLimit: true, // allow "more" link when too many events
         events: 'https://fullcalendar.io/demo-events.json'
