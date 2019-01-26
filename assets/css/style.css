@@ -12,3 +12,10 @@ body {
 .Montserrat {
     font-family: 'Montserrat', sans-serif;
 }
+/* Navbar logo height width */
+#happen-nav-logo {
+    margin: -4px;
+    height: 71.4px;
+    width: 114.2px;
+}
+/* Navbar logo h&w END */
