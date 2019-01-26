@@ -1,0 +1,62 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>API Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" />
+    <script src="quoteAPI.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Inspirational Quote</h1>
+
+        <!-- We'll be dumping our JSON contents in here -->
+        <h2>
+            <div id="quote-view"></div>
+            <div id="author-view"></div>
+        </h2>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+
+
+
+
+
+            // Build API request url
+            var corsProxy = "https://cors-anywhere.herokuapp.com/";
+            var endpointUrl = "https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en";
+            var fullUrl = corsProxy + endpointUrl;
+
+            // Write code between the dashes below to hit the queryURL with $ajax, then take the response data
+            // and display it in the div 
+
+            // ------YOUR CODE GOES IN THESE DASHES. DO NOT MANUALLY EDIT THE HTML ABOVE.
+
+            $.ajax({
+                url: fullUrl,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response)
+                console.log('author', response.quoteAuthor)
+                var newAuthor = response.quoteAuthor
+                $("#author-view").text("-" + newAuthor)
+
+                console.log(response.quoteAuthor);
+                $("#quote-view").text(JSON.stringify(response.quoteText));
+
+            });
+
+
+                // -----------------------------------------------------------------------
+
+
+        </script>
+
+</body>
+
+</html>
