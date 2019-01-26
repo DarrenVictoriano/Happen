@@ -31,11 +31,11 @@
 
     <!-- Navbar -->
     <nav class="nav-wrapper grey lighten-5">
-        <a href="index.html" class="brand-logo"><img id="happen-nav-logo" src="./assets/images/happen-logo-02.png" alt="happen logo"></a>
-        <a href="#" class="right sidenav-trigger" data-target="mobile-links">
+        <a href="index.html" class="brand-logo right"><img id="happen-nav-logo" src="./assets/images/happen-logo-02.png" alt="happen logo"></a>
+        <a href="#" class="sidebar left sidenav-trigger" data-target="mobile-links">
             <i class="material-icons grey-text text-darken-4">menu</i>
         </a>
-        <ul class="right hide-on-med-and-down">
+        <ul class="left hide-on-med-and-down">
             <li><a href="#" class="grey-text text-darken-4">About</a></li>
             <li class="grey-text text-darken-4">|</li>
             <li><a href="#" class="grey-text text-darken-4">Today</a></li>
@@ -47,7 +47,42 @@
     </ul>
     <!-- Navbar End -->
 
-
+    <div class="container">
+        <section id="quote" class="center col s12 yellow accent-3">
+            insert inspirational quote
+        </section>
+        <div class="row">
+            <div id="calander-table-container" class="left col s12 m6 l6 red accent-3">
+                <section id="calander-table">
+                    calander
+                </section>
+            </div>
+            <div id="calander-form-container" class="right col s12 m6 l6">
+                <section id="form-container" class="grey lighten-5">
+                    <h6 class="goals Montserrat">Goals</h6>
+                    <div class="row">
+                        <div class="input-field col s6 left">
+                            <input id="Task" type="text" class="validate green-text text-accent-2">
+                            <label for="Task">Task</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6 left">
+                            <input id="Time" type="time" class="validate">
+                            <label for="Time">Time Start</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6 left">
+                            <input id="Time" type="time" class="validate">
+                            <label for="Time">Time End</label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
