@@ -7,3 +7,6 @@ var typed = new Typed("#typed-movement", {
 $("#login").on("click", function () {
     $("#login-modal").modal();
 });
+$("#signup").on("click", function () {
+    $("#signup-modal").modal();
+});
