@@ -53,22 +53,49 @@
         <li><a href="#" class="grey-text text-darken-4">Today</a></li>
     </ul>
     <!-- Navbar End -->
-
-    <div class="">
         <div class="row">
-            <div id="calander-table-container" class="col-sm-9 red accent-3">
-                <section id="calendar-table">
+            <div id="calander-table-container" class="col-sm-9">
+                <section id="calander-table" class="grey lighten-5">
                     <!-- Calendar shows up here -->
                 </section>
             </div>
-            <div id="calander-form-container" class="col-sm-3 grey lighten-5">
+            <div id="calander-form-container" class="col-sm-3">
                 <section id="form-container" class="grey lighten-5">
-                    <h6 class="goals Montserrat">Goals</h6>
-
+                    <h6 id="Goals-title" class="goals Montserrat center green-text text-accent-2">Goals</h6>
+                    <div class="row col-s4 col-m12">
+                        <div class="input-field col-m12 center">
+                            <!-- id you'll pull for  -->
+                            <input id="task-title" type="text" class="validate center">
+                            <label for="task-title">Task</label>
+                        </div>
+                    </div>
+                    <div class="row col-s4 col-m12">
+                        <div class="input-field col-m12 center">
+                            <input id="time-start" type="time" class="validate center">
+                            <label for="time-start">Start Time</label>
+                        </div>
+                    </div>
+                    <div class="row col-s4 col-m12">
+                        <div class="input-field col-m12 center">
+                            <input id="time-end" type="time" class="validate center">
+                            <label for="time-end">End Time</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <a id="task-adder" class="btn-floating btn-large waves-effect waves-light green accent-2 col-s4 left">
+                            <i class=" material-icons">
+                                add
+                            </i>
+                        </a>
+                        <a id="task-subtractor" class="btn-floating btn-large waves-effect waves-light red accent-2 col-s4 right">
+                            <i class="material-icons">
+                                remove
+                            </i>
+                        </a>
+                    </div>
                 </section>
             </div>
         </div>
-    </div>
 
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="

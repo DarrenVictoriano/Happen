@@ -2,7 +2,7 @@
 $(document).ready(function () {
     $('.sidenav').sidenav();
 
-    $("#calendar-table").fullCalendar({
+    $("#calander-table").fullCalendar({
         timeZone: 'UTC',
         themeSystem: 'bootstrap4',
         defaultView: 'agendaDay',
