@@ -8,3 +8,8 @@
 #container-productivity-articles {
     margin-top: 18px;
 }
+
+/* Styling for Articles div */
+.img-ajax {
+    height: 300px;
+}
