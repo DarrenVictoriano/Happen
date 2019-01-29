@@ -13,3 +13,5 @@ $("#login").on("click", function () {
 $("#signup").on("click", function () {
     $("#signup-modal").modal();
 });
+
+// https://www.youtube.com/watch?v=iKlWaUszxB4

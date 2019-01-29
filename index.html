@@ -21,6 +21,12 @@
     <!-- Own styles for typed.js -->
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/index.css">
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -48,42 +54,18 @@
         </section>
 
         <!-- Modal Structure Login -->
-        <div id="login-modal" class="modal modal-fixed-footer">
-            <div class="modal-content">
-                <!-- Title -->
-                <div class="row">
-                    <h4 class="center-align Montserrat green-text text-accent-2">Login</h4>
-                    <div id="modal-flexbox" class="container">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="email" type="email" class="validate">
-                                <label for="email" class="green-text text-accent-2">Fake Email</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <input id="password" type="password" class="validate">
-                                <label for="password" class="green-text text-accent-2">Password</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div id="login-modal" class="modal">
 
-            </div>
-            <div class="modal-footer">
-                <div class="row">
-                    <div class="col s4"></div>
-                    <!-- <div class="col s2">
-                        <a href="#!" class="modal-close waves-effect waves-light btn green accent-2">Login</a>
-                    </div> -->
-                    <div class="col s2 center">
-                        <a href="#!" class="modal-close waves-effect waves-light btn green accent-2 Montserrat">Login</a>
-                    </div>
-                    <div class="col s2 center">
-                        <a id="signup" href="#signup-modal" class="modal-close waves-effect waves-light btn green accent-2 Montserrat modal-trigger">Sign-up</a>
-                    </div>
-                    <div class="col s4"></div>
-                </div>
+            <!-- The surrounding HTML is left untouched by FirebaseUI.
+     Your app may use that space for branding, controls and other customizations.-->
 
-            </div>
+            <div id="firebaseui-auth-container"></div>
+            <div id="loader">Loading...</div>
+            <!-- Title -->
+
+
+
+
         </div>
         <!-- End of Motal Structure Login -->
 
@@ -96,19 +78,19 @@
                     <div id="modal-flexbox" class="container">
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="first_name" type="text" class="validate">
+                                <input id="first-name-sign" type="text" class="validate">
                                 <label for="first_name" class="green-text text-accent-2">First Name</label>
                             </div>
                             <div class="input-field col s12">
-                                <input id="last_name" type="text" class="validate">
+                                <input id="last-name-sign" type="text" class="validate">
                                 <label for="last_name" class="green-text text-accent-2">Last Name</label>
                             </div>
                             <div class="input-field col s12">
-                                <input id="email" type="email" class="validate">
+                                <input id="email-sign" type="email" class="validate">
                                 <label for="email" class="green-text text-accent-2">Fake Email</label>
                             </div>
                             <div class="input-field col s12">
-                                <input id="password" type="password" class="validate">
+                                <input id="password-sign" type="password" class="validate">
                                 <label for="password" class="green-text text-accent-2">Password</label>
                             </div>
                         </div>
@@ -134,7 +116,6 @@
 
     </section>
 
-
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
@@ -143,7 +124,10 @@
     <!-- Materialize JS Framework -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- Own JS -->
+    <script src="assets/javascript/firebase.js"></script>
+    <script src="./assets/javascript/login.js"></script>
     <script src="./assets/javascript/index.js"></script>
+
 
 </body>
 
