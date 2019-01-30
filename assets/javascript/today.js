@@ -24,7 +24,7 @@ var mainApp = {};
     var todayTasks = [];
 
     //activates when plus button is clicked
-    $('#task-adder').on('click', function () {
+    $('#task-adder').on('click', function() {
 
         event.preventDefault();
         var taskInfo = {};
@@ -40,11 +40,9 @@ var mainApp = {};
             //this returns either a true or false value
         }
 
-        isEndAfterStart(timeStart, timeEnd);
-
         //If is valid it will append these values to the object taskInfo, if not it will say you need to fix it. 
         function isValid() {
-            if (isEndAfterStart(timeStart, timeEnd) == true) {
+            if (isEndAfterStart(timeStart, timeEnd)) {
                 // Our variables/bindings are added into the object
                 taskInfo = {
                     title: taskTitle,
@@ -52,16 +50,18 @@ var mainApp = {};
                     end: timeEnd,
                 };
                 console.log(taskInfo);
-                for (var i = 0; i < todayTasks.length; i ++)
                 todayTasks.push(taskInfo);
-
                 console.log(todayTasks);
-
             } else {
                 return;
             }
         }
         isValid();
+    });
+
+    $('#task-subtractor').on('click', function() {
+        todayTasks.pop();
+        console.log(todayTasks.length);
     });
 
 // Nav bar mobile activator
