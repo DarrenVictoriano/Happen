@@ -45,3 +45,7 @@ body {
     -webkit-animation-duration: .5s;
     -webkit-animation-delay: 7s;
 }
+
+#login-modal {
+    max-width: 360px;
+}
