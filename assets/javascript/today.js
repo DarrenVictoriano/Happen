@@ -1,12 +1,22 @@
 var mainApp = {};
+var uid = null;
+var userFullName = null;
 
 (function () {
     var firebase = app_firebase;
-    var uid = null;
+
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             // User is signed in.
             uid = user.uid;
+            userFullName = user.displayName;
+            console.log(uid);
+            console.log(user.displayName);
+
+            // GET parameters to include
+            var avatar = "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=" + userFullName.split(" ").join("+");
+
+            $(".profile-avatar").attr("src", avatar);
         } else {
             uid = null;
             window.location.replace("index.html");
@@ -20,6 +30,10 @@ var mainApp = {};
 
     mainApp.logOut = logOut;
 })()
+
+// profile avatar
+//url: "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=DV"
+
 
 // Nav bar mobile activator
 $(document).ready(function () {
@@ -47,5 +61,5 @@ $(document).ready(function () {
 // Nav bar mobile end
 $('.dropdown-trigger').dropdown();
 
-$("#sign-out").on("click", mainApp.logOut);
+$(".sign-out").on("click", mainApp.logOut);
 
