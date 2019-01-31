@@ -21,6 +21,49 @@ var mainApp = {};
     mainApp.logOut = logOut;
 })()
 
+    var todayTasks = [];
+
+    //activates when plus button is clicked
+    $('#task-adder').on('click', function() {
+
+        event.preventDefault();
+        var taskInfo = {};
+
+        //this records the value of our inputs for Task, Start time, and End time
+        var taskTitle = $('#task-title').val().trim();
+        var timeStart = $('#time-start').val().trim();
+        var timeEnd = $('#time-end').val().trim();
+
+        function isEndAfterStart(start, end) {
+            var format = "HH:mm";
+            return moment(end, format) > moment(start, format);
+            //this returns either a true or false value
+        }
+
+        //If is valid it will append these values to the object taskInfo, if not it will say you need to fix it. 
+        function isValid() {
+            if (isEndAfterStart(timeStart, timeEnd)) {
+                // Our variables/bindings are added into the object
+                taskInfo = {
+                    title: taskTitle,
+                    start: timeStart,
+                    end: timeEnd,
+                };
+                console.log(taskInfo);
+                todayTasks.push(taskInfo);
+                console.log(todayTasks);
+            } else {
+                return;
+            }
+        }
+        isValid();
+    });
+
+    $('#task-subtractor').on('click', function() {
+        todayTasks.pop();
+        console.log(todayTasks.length);
+    });
+
 // Nav bar mobile activator
 $(document).ready(function () {
     $('.sidenav').sidenav();
