@@ -47,13 +47,19 @@
         <a href="index.html" class="brand-logo right"><img id="happen-nav-logo" src="./assets/images/happen-logo-02.png"
                 alt="happen logo"></a>
 
+        <a href="#" class="sidebar left sidenav-trigger" data-target="profile-links">
+            <i class="material-icons grey-text text-darken-4">account_circle</i>
+        </a>
+
         <a href="#" class="sidebar left sidenav-trigger" data-target="mobile-links">
             <i class="material-icons grey-text text-darken-4">menu</i>
         </a>
+
+
         <ul class="left hide-on-med-and-down">
             <li>
                 <a class='dropdown-trigger grey-text text-darken-4' href='#dropdown1' data-target='dropdown1'>
-                    <img id="profile-avatar" src="https://ui-avatars.com/api/?name=John+Doe">
+                    <img class="profile-avatar" src="https://ui-avatars.com/api/?name=John+Doe">
                     <i class="material-icons right">arrow_drop_down</i>
                 </a>
             </li>
@@ -62,12 +68,20 @@
             <li><a href="today.html" class="grey-text text-darken-4">Today</a></li>
         </ul>
     </nav>
-    <!-- Profile -->
+    <!-- Profile-dropdown -->
     <ul id='dropdown1' class='dropdown-content'>
         <li><a href="#!">one</a></li>
         <li><a href="#!">two</a></li>
         <li class="divider" tabindex="-1"></li>
-        <li><a href="#!" id="sign-out">Sign-out</a></li>
+        <li><a href="#!" class="sign-out">Sign-out</a></li>
+    </ul>
+
+    <!-- Profile Menu -->
+    <ul class="sidenav" id="profile-links">
+        <li><a href="#" class="grey-text text-darken-4">one</a></li>
+        <li><a href="#" class="grey-text text-darken-4">two</a></li>
+        <li class="divider" tabindex="-1"></li>
+        <li><a href="#!" class="sign-out">Sign-out</a></li>
     </ul>
 
     <!-- Menu -->
@@ -149,6 +163,7 @@
     <script src="assets/javascript/firebase.js"></script>
     <script src="./assets/javascript/login.js"></script>
     <script src="./assets/javascript/today.js"></script>
+    <script src="./assets/javascript/today-tracker.js"></script>
 
 </body>
 
