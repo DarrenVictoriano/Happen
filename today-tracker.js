@@ -14,34 +14,31 @@ $(document).ready(function () {
 
     var queryURL = url + keyword + lang + from + "&apiKey=" + apiKey;
 
-
-    // Write code between the dashes below to hit the queryURL with $ajax, then take the response data
-    // and display it in the div 
-
-    // ------YOUR CODE GOES IN THESE DASHES. DO NOT MANUALLY EDIT THE HTML ABOVE.
-
-
+    // Variables for Quote API
     var corsProxy = "https://cors-anywhere.herokuapp.com/";
     var endpointUrl = "https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en";
     var fullUrl = corsProxy + endpointUrl;
 
+    // Made into a function 
     function getQuote() {
         $.ajax({
             url: fullUrl,
             method: "GET"
         }).then(function (response) {
-            console.log(response)
-            console.log('author', response.quoteAuthor)
-            var newAuthor = response.quoteAuthor
-            $("#inspirational-quote").text("-" + newAuthor)
+            // Logs the response from URL; the quote and the author of the quote
+            console.log(response);
+            console.log('author', response.quoteAuthor);
 
-            console.log(response.quoteAuthor);
+            //
+
             $("#inspirational-quote").text(JSON.stringify(response.quoteText));
-
+            $("#quote-author").text("asdasdas");
+            console.log("test2" + response.quoteAuthor);
         });
     }
 
-    setInterval(getQuote, 10000);
+    // Set an interval that calls the function every 10 seconds so that a new quote is displayed every 10 seconds
+    setInterval(getQuote, 2000);
 
     // Ajax call to News Article API
 
