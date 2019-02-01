@@ -31,7 +31,7 @@ $('#task-adder').on('click', function () {
     var taskTitle = $('#task-title').val().trim();
     var timeStart = $('#time-start').val().trim();
     var timeEnd = $('#time-end').val().trim();
-    var timeFormater = moment().format("MM/DD/YYYY|HH:mm");
+    var timeFormater = moment().format("YYYY-MM-DDT|HH:mm");
     var futureTime;
     var futureUnixStart = timeChanger(timeFormater, timeStart);
     var futureUnixEnd = timeChanger(timeFormater, timeEnd);
@@ -41,7 +41,7 @@ $('#task-adder').on('click', function () {
         x = x.split('|');
         var currentDate = x[0];
         var importedTime = y;
-        futureTime = currentDate + " " + importedTime;
+        futureTime = currentDate + importedTime + ":00-0000";
         return futureTime;
     }
     //END OF: START AND END ADJUSTORS
