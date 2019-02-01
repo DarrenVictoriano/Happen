@@ -22,3 +22,13 @@
 #task-subtractor {
     margin: 15px;
 }
+
+#calander-table-container {
+    -webkit-animation-duration: 1s;
+    /* -webkit-animation-delay: .5s; */
+}
+
+ #calander-form-container {
+    -webkit-animation-duration: .5s;
+    -webkit-animation-delay: 1s;
+ }
