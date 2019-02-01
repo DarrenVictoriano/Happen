@@ -21,48 +21,63 @@ var mainApp = {};
     mainApp.logOut = logOut;
 })()
 
-    var todayTasks = [];
+var todayTasks = [];
 
-    //activates when plus button is clicked
-    $('#task-adder').on('click', function() {
+//ADDER ICON
+$('#task-adder').on('click', function () {
+    event.preventDefault();
+    
+    var taskInfo = {};
+    var taskTitle = $('#task-title').val().trim();
+    var timeStart = $('#time-start').val().trim();
+    var timeEnd = $('#time-end').val().trim();
+    var timeFormater = moment().format("MM/DD/YYYY|HH:mm");
+    var futureTime;
+    var futureUnixStart = timeChanger(timeFormater, timeStart);
+    var futureUnixEnd = timeChanger(timeFormater, timeEnd);
 
-        event.preventDefault();
-        var taskInfo = {};
+    //START AND END ADJUSTORS
+    function timeChanger(x, y) {
+        x = x.split('|');
+        var currentDate = x[0];
+        var importedTime = y;
+        futureTime = currentDate + " " + importedTime;
+        return futureTime;
+    }
+    //END OF: START AND END ADJUSTORS
 
-        //this records the value of our inputs for Task, Start time, and End time
-        var taskTitle = $('#task-title').val().trim();
-        var timeStart = $('#time-start').val().trim();
-        var timeEnd = $('#time-end').val().trim();
-
-        function isEndAfterStart(start, end) {
-            var format = "HH:mm";
-            return moment(end, format) > moment(start, format);
-            //this returns either a true or false value
+    //VALID OR NOT
+    function isEndAfterStart(start, end) {
+        var format = "HH:mm";
+        return moment(end, format) > moment(start, format);
+    }
+    function isValid() {
+        if (isEndAfterStart(timeStart, timeEnd)) {
+            taskInfo = {
+                title: taskTitle,
+                start: futureUnixStart,
+                end: futureUnixEnd,
+            };
+            todayTasks.push(taskInfo);
+            console.log(taskInfo);
+        } else {
+            return;
         }
+    }
+    //END OF: VALID OR NOT
 
-        //If is valid it will append these values to the object taskInfo, if not it will say you need to fix it. 
-        function isValid() {
-            if (isEndAfterStart(timeStart, timeEnd)) {
-                // Our variables/bindings are added into the object
-                taskInfo = {
-                    title: taskTitle,
-                    start: timeStart,
-                    end: timeEnd,
-                };
-                console.log(taskInfo);
-                todayTasks.push(taskInfo);
-                console.log(todayTasks);
-            } else {
-                return;
-            }
-        }
-        isValid();
-    });
+    isValid();
+});
+//END OF: ADDER ICON
 
-    $('#task-subtractor').on('click', function() {
-        todayTasks.pop();
-        console.log(todayTasks.length);
-    });
+//SUBTRACTOR ICON
+$('#task-subtractor').on('click', function () {
+    todayTasks.pop();
+    console.log(todayTasks.length);
+});
+//END OF: SUBTRACTOR ICON
+
+
 
 // Nav bar mobile activator
 $(document).ready(function () {
