@@ -1,4 +1,5 @@
 var app_firebase = {};
+var database_firebase = null;
 
 (function () {
     // Initialize Firebase
@@ -13,4 +14,5 @@ var app_firebase = {};
     firebase.initializeApp(config);
 
     app_firebase = firebase;
+    database_firebase = firebase.database();
 })()

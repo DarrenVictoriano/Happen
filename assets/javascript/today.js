@@ -4,6 +4,7 @@ var userFullName = null;
 
 (function () {
     var firebase = app_firebase;
+    var db = database_firebase;
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -12,6 +13,7 @@ var userFullName = null;
             userFullName = user.displayName;
             console.log(uid);
             console.log(user.displayName);
+            createUserData(uid);
 
             // GET parameters to include
             var avatar = "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=" + userFullName.split(" ").join("+");
@@ -26,6 +28,17 @@ var userFullName = null;
 
     function logOut() {
         firebase.auth().signOut();
+    }
+
+    function createUserData(uid) {
+        db.ref().on("value", function (snap) {
+            if (!snap.val().uid) {
+                db.ref().push(uid);
+            }
+
+        }, function (error) {
+            console.log(error);
+        });
     }
 
     mainApp.logOut = logOut;
