@@ -10,6 +10,12 @@
 }
 
 /* Styling for Articles div */
-.img-ajax {
-    height: 300px;
+
+.articles-ajax {
+    padding: 20px;
+    border-bottom: 2px solid lightslategray;
+}
+
+.articles-ajax h5 {
+    font-weight: bold;
 }

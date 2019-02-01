@@ -36,17 +36,17 @@ $(document).ready(function() {
             // Variables that create elements for each item
             var artHeading = $('<h5>' + resultTitle + '</h5>');
             var artImage = $('<img src="' + resultImage + '">' + '</img>');
-            var artSummary = $('<p>'+ resultDesc + '</p>');
-            var artHyperlink = $('<a href="' + resultURL + '">' + resultURL + '</a>' + '<br>');
+            var artSummary = $('<br>' + '<p>'+ resultDesc + '</p>');
+            var artHyperlink = $('<a href="' + resultURL + '">' + 'Visit' + '</a>' + '<br>');
 
             // Grabs existing div for articles and dynamically
             // creates and appends items from each article
             $("#productivity-articles")
             .append($('<div>').addClass('articles-ajax')
             .append(artHeading)
-            .append((artImage).addClass('img-ajax'))
+            .append((artImage).addClass('responsive-img'))
             .append(artSummary)
-            .append(artHyperlink));            
+            .append(artHyperlink).addClass('responsive-link'));            
         };
     });
         
