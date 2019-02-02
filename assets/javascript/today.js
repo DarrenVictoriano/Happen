@@ -48,11 +48,14 @@ function addTask() {
         console.log(snap.val());
         console.log(snap.val()[uid].name);
 
+        var timeStart = $('#time-start').val().trim();
+        var timeEnd = $('#time-end').val().trim();
 
+        console.log(moment().format("YYYY-MM-DDT" + timeStart));
 
         eventArr = snap.val()[uid].events;
         eventArr.push({
-            title: 'Event Title3',
+            title: $('#task-title').val().trim(),
             start: '2019-02-01T14:13:55-0400',
             end: '2019-02-01T13:15:55-0400'
         })
