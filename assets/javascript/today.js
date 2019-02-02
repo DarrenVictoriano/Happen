@@ -47,22 +47,18 @@ function addTask() {
         }
         console.log(snap.val());
         console.log(snap.val()[uid].name);
+
+
+
+        eventArr = snap.val()[uid].events;
+        eventArr.push({
+            title: 'Event Title3',
+            start: '2019-02-01T14:13:55-0400',
+            end: '2019-02-01T13:15:55-0400'
+        })
+
         theEvents = {
-            events: [{
-                title: 'Event Title1',
-                start: '2019-02-01T13:13:55.008',
-                end: '2019-02-01T13:13:55.008'
-            },
-            {
-                title: 'Event Title2',
-                start: '2019-02-01T13:13:55-0400',
-                end: '2019-02-01T13:13:55-0400'
-            },
-            {
-                title: 'Event Title3',
-                start: '2019-02-01T14:13:55-0400',
-                end: '2019-02-01T13:15:55-0400'
-            }]
+            events: eventArr
         }
 
         db.ref().child(uid).update(theEvents);
@@ -76,32 +72,7 @@ function addTask() {
 
 // Nav bar mobile activator
 db.ref().on("value", function (snap) {
-
-    $("#calendar-table").fullCalendar({
-        timeZone: 'UTC',
-        themeSystem: 'bootstrap4',
-        defaultView: 'agendaDay',
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay,listMonth'
-        },
-        bootstrapGlyphicons: {
-            prev: 'fa-chevron-left',
-            next: 'fa-chevron-right'
-        },
-        nowIndicator: true,
-        weekNumbers: true,
-        eventLimit: true, // allow "more" link when too many events
-        events: snap.val()[uid].events
-    });
-
-}, function (err) {
-    console.log(err);
-});
-
-db.ref().on("child_changed", function (snap) {
-
+    console.log("event: " + snap.val()[uid].events);
     $("#calendar-table").fullCalendar({
         timeZone: 'UTC',
         themeSystem: 'bootstrap4',
