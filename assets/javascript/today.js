@@ -1,56 +1,81 @@
 var mainApp = {};
 var uid = null;
 var userFullName = null;
+var theEvents = {};
+var eventArr = [];
+var eventsCalendar = [];
+var firebase = app_firebase;
+var db = database_firebase;
 
-(function () {
-    var firebase = app_firebase;
-    var db = database_firebase;
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        // User is signed in.
+        uid = user.uid;
+        userFullName = user.displayName;
+        console.log(uid);
+        console.log(user.displayName);
 
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            // User is signed in.
-            uid = user.uid;
-            userFullName = user.displayName;
-            console.log(uid);
-            console.log(user.displayName);
-            createUserData(uid);
+        // GET parameters to include
+        var avatar = "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=" + userFullName.split(" ").join("+");
 
-            // GET parameters to include
-            var avatar = "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=" + userFullName.split(" ").join("+");
+        $(".profile-avatar").attr("src", avatar);
+    } else {
+        uid = null;
+        window.location.replace("index.html");
+        // No user is signed in.
+    }
+});
 
-            $(".profile-avatar").attr("src", avatar);
-        } else {
-            uid = null;
-            window.location.replace("index.html");
-            // No user is signed in.
+function logOut() {
+    firebase.auth().signOut();
+}
+
+function createUserData() {
+    var newUser = {
+        name: userFullName,
+    }
+    db.ref().child(uid).set(newUser);
+    console.log("created");
+}
+
+function addTask() {
+    // value change firebase
+    db.ref().once("value").then(function (snap) {
+        if (!snap.val()[uid]) {
+            console.log("user does not exist, creating new user");
+            createUserData();
         }
+        console.log(snap.val());
+        console.log(snap.val()[uid].name);
+        theEvents = {
+            events: [{
+                title: 'Event Title1',
+                start: '2019-02-01T13:13:55.008',
+                end: '2019-02-01T13:13:55.008'
+            },
+            {
+                title: 'Event Title2',
+                start: '2019-02-01T13:13:55-0400',
+                end: '2019-02-01T13:13:55-0400'
+            },
+            {
+                title: 'Event Title3',
+                start: '2019-02-01T14:13:55-0400',
+                end: '2019-02-01T13:15:55-0400'
+            }]
+        }
+
+        db.ref().child(uid).update(theEvents);
+        eventsCalendar = snap.val()[uid].events;
+        console.log(eventsCalendar);
+
+    }, function (err) {
+        console.log(err);
     });
-
-    function logOut() {
-        firebase.auth().signOut();
-    }
-
-    function createUserData(uid) {
-        db.ref().on("value", function (snap) {
-            if (!snap.val().uid) {
-                db.ref().push(uid);
-            }
-
-        }, function (error) {
-            console.log(error);
-        });
-    }
-
-    mainApp.logOut = logOut;
-})()
-
-// profile avatar
-//url: "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=DV"
-
+}
 
 // Nav bar mobile activator
-$(document).ready(function () {
-    $('.sidenav').sidenav();
+db.ref().on("value", function (snap) {
 
     $("#calendar-table").fullCalendar({
         timeZone: 'UTC',
@@ -68,11 +93,47 @@ $(document).ready(function () {
         nowIndicator: true,
         weekNumbers: true,
         eventLimit: true, // allow "more" link when too many events
-        events: 'https://fullcalendar.io/demo-events.json'
+        events: snap.val()[uid].events
     });
+
+}, function (err) {
+    console.log(err);
+});
+
+db.ref().on("child_changed", function (snap) {
+
+    $("#calendar-table").fullCalendar({
+        timeZone: 'UTC',
+        themeSystem: 'bootstrap4',
+        defaultView: 'agendaDay',
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay,listMonth'
+        },
+        bootstrapGlyphicons: {
+            prev: 'fa-chevron-left',
+            next: 'fa-chevron-right'
+        },
+        nowIndicator: true,
+        weekNumbers: true,
+        eventLimit: true, // allow "more" link when too many events
+        events: snap.val()[uid].events
+    });
+
+}, function (err) {
+    console.log(err);
+});
+
+$(document).ready(function () {
+    $('.sidenav').sidenav();
+
 });
 // Nav bar mobile end
 $('.dropdown-trigger').dropdown();
 
-$(".sign-out").on("click", mainApp.logOut);
+$(".sign-out").on("click", logOut);
 
+$("#task-adder").on("click", addTask);
+
+$("#task-subtractor").on("click", test);
