@@ -2,7 +2,13 @@ var mainApp = {};
 var uid = null;
 var userFullName = null;
 var theEvents = {};
-var eventArr = [];
+var eventArr = [{
+    end: moment().format(),
+    start: moment().format(),
+    title: "Welcome to Happen!",
+    id: 0
+}];
+
 var eventsCalendar = [];
 var firebase = app_firebase;
 var db = database_firebase;
@@ -19,6 +25,33 @@ firebase.auth().onAuthStateChanged(function (user) {
         var avatar = "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=" + userFullName.split(" ").join("+");
 
         $(".profile-avatar").attr("src", avatar);
+
+        db.ref(uid + "/events").on("value", function (snap) {
+            console.log("this is the" + snap.val());
+
+            $("#calendar-table").fullCalendar({
+                timeZone: 'UTC',
+                themeSystem: 'bootstrap4',
+                defaultView: 'agendaDay',
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay,listMonth'
+                },
+                bootstrapGlyphicons: {
+                    prev: 'fa-chevron-left',
+                    next: 'fa-chevron-right'
+                },
+                nowIndicator: true,
+                weekNumbers: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: snap.val()
+            });
+
+        }, function (err) {
+            console.log(err);
+        });
+
     } else {
         uid = null;
         window.location.replace("index.html");
@@ -33,6 +66,7 @@ function logOut() {
 function createUserData() {
     var newUser = {
         name: userFullName,
+        events: eventArr
     }
     db.ref().child(uid).set(newUser);
     console.log("created");
@@ -45,8 +79,6 @@ function addTask() {
             console.log("user does not exist, creating new user");
             createUserData();
         }
-        console.log(snap.val());
-        console.log(snap.val()[uid].name);
 
         var timeStart = $('#time-start').val().trim();
         var timeEnd = $('#time-end').val().trim();
@@ -72,38 +104,20 @@ function addTask() {
     }, function (err) {
         console.log(err);
     });
+
+    $('#calendar').fullCalendar('rerenderEvents');
+    $('#calendar').fullCalendar('refetchEvents');
 }
 
 // Nav bar mobile activator
-db.ref().on("child_changed", function (snap) {
-    console.log("event: " + snap.val()[uid].events);
-    $("#calendar-table").fullCalendar({
-        timeZone: 'UTC',
-        themeSystem: 'bootstrap4',
-        defaultView: 'agendaDay',
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay,listMonth'
-        },
-        bootstrapGlyphicons: {
-            prev: 'fa-chevron-left',
-            next: 'fa-chevron-right'
-        },
-        nowIndicator: true,
-        weekNumbers: true,
-        eventLimit: true, // allow "more" link when too many events
-        events: snap.val()[uid].events
-    });
 
-}, function (err) {
-    console.log(err);
-});
 
 $(document).ready(function () {
     $('.sidenav').sidenav();
 
+
 });
+
 // Nav bar mobile end
 $('.dropdown-trigger').dropdown();
 
