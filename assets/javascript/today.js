@@ -50,15 +50,16 @@ function addTask() {
 
         var timeStart = $('#time-start').val().trim();
         var timeEnd = $('#time-end').val().trim();
-
-        console.log(moment().format("YYYY-MM-DDT" + timeStart));
+        var newTimeStart = moment().format("YYYY-MM-DDT" + timeStart + ":00-0000");
+        var newTimeEnd = moment().format("YYYY-MM-DDT" + timeEnd + ":00-0000");
 
         eventArr = snap.val()[uid].events;
         eventArr.push({
             title: $('#task-title').val().trim(),
-            start: '2019-02-01T14:13:55-0400',
-            end: '2019-02-01T13:15:55-0400'
-        })
+            start: newTimeStart,
+            end: newTimeEnd,
+            id: eventArr.length
+        });
 
         theEvents = {
             events: eventArr
@@ -74,7 +75,7 @@ function addTask() {
 }
 
 // Nav bar mobile activator
-db.ref().on("value", function (snap) {
+db.ref().on("child_changed", function (snap) {
     console.log("event: " + snap.val()[uid].events);
     $("#calendar-table").fullCalendar({
         timeZone: 'UTC',
