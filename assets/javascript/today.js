@@ -26,8 +26,13 @@ firebase.auth().onAuthStateChanged(function (user) {
 
         $(".profile-avatar").attr("src", avatar);
 
-        db.ref(uid + "/events").on("value", function (snap) {
-            console.log("this is the" + snap.val());
+        db.ref().on("value", function (snap) {
+            if (!snap.val()[uid]) {
+                console.log("user does not exist, creating new user");
+                createUserData();
+            }
+
+            console.log("this is the" + snap.val()[uid].events);
 
             $("#calendar-table").fullCalendar({
                 timeZone: 'UTC',
@@ -49,7 +54,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             });
 
             $("#calendar-table").fullCalendar("refetchEvents");
-            $("#calendar-table").fullCalendar("renderEvents", snap.val());
+            $("#calendar-table").fullCalendar("renderEvents", snap.val()[uid].events);
             console.log("this is running");
         }, function (err) {
             console.log(err);
@@ -78,10 +83,6 @@ function createUserData() {
 function addTask() {
     // value change firebase
     db.ref().once("value").then(function (snap) {
-        if (!snap.val()[uid]) {
-            console.log("user does not exist, creating new user");
-            createUserData();
-        }
 
         var timeStart = $('#time-start').val().trim();
         var timeEnd = $('#time-end').val().trim();
@@ -116,7 +117,6 @@ function addTask() {
 
 $(document).ready(function () {
     $('.sidenav').sidenav();
-
 
 });
 
