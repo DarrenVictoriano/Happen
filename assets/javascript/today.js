@@ -6,7 +6,7 @@ var eventArr = [{
     end: moment().format(),
     start: moment().format(),
     title: "Welcome to Happen!",
-    id: 0
+    id: 0,
 }];
 
 var eventsCalendar = [];
@@ -48,6 +48,9 @@ firebase.auth().onAuthStateChanged(function (user) {
                 events: snap.val()
             });
 
+            $("#calendar-table").fullCalendar("refetchEvents");
+            $("#calendar-table").fullCalendar("renderEvents", snap.val());
+            console.log("this is running");
         }, function (err) {
             console.log(err);
         });
@@ -100,17 +103,16 @@ function addTask() {
         db.ref().child(uid).update(theEvents);
         eventsCalendar = snap.val()[uid].events;
         console.log(eventsCalendar);
+        var freshCounter = snap.val()[uid].refresh;
+        db.ref().child(uid).update({ refresh: freshCounter + 1 });
 
     }, function (err) {
         console.log(err);
     });
 
-    $('#calendar').fullCalendar('rerenderEvents');
-    $('#calendar').fullCalendar('refetchEvents');
 }
 
 // Nav bar mobile activator
-
 
 $(document).ready(function () {
     $('.sidenav').sidenav();
@@ -124,5 +126,3 @@ $('.dropdown-trigger').dropdown();
 $(".sign-out").on("click", logOut);
 
 $("#task-adder").on("click", addTask);
-
-$("#task-subtractor").on("click", test);
